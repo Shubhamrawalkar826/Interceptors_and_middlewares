@@ -1,0 +1,71 @@
+<html>
+<body id="bod">
+<button id="maketable" value="make table">make table</button>
+</body>
+<script>
+
+
+function fun1(cb)
+{
+console.log(typeof cb)
+console.log("this function");
+cb();
+}
+function offi()
+{
+console.log("you can pass me");
+}
+fun1(offi);
+fun1(function(){console.log("hello")});
+
+
+function superfun()
+{
+console.log("super fun");
+var childfun=function()
+{
+console.log("child fun");
+}
+return childfun;
+}
+var op=superfun();
+console.log(op)
+op();
+
+
+function superf()
+{
+console.log("super fun");
+var tousel="for later use";
+return function childf(arg)
+{
+console.log("child fun"+arg);
+}
+}
+superf()("hello");
+
+
+function createDynamicTable()
+{
+if(document.getElementById('newtable'))
+document.getElementById('newtable').remove();
+var tabl=document.createElement('table')
+for(var i=0;i<10;i++)
+{
+var tabrow=document.createElement('tr');
+var td1=document.createElement('td');
+td1.innerHTML=i;
+var td2=document.createElement('td');
+td2.innerHTML=i+10;
+tabrow.append(td1);
+tabrow.append(td2);
+tabl.append(tabrow);
+}
+document.getElementById('bod').append(tabl);
+tabl.border='2px'
+tabl.setAttribute("id","newtable");
+}
+var btn=document.getElementById('maketable')
+btn.addEventListener('click',createDynamicTable);
+</script>
+</html>
